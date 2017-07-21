@@ -6,6 +6,8 @@ import {
   GraphQLSchema,
 } from 'graphql';
 import db from './db';
+import mongoose from 'mongoose';
+var ObjectId = require('mongoose').Types.ObjectId;
 
 const articleType = new GraphQLObjectType({
   name: 'Article',
@@ -42,9 +44,29 @@ const Query = new GraphQLObjectType({
     articles: {
       type: new GraphQLList(articleType),
       resolve() {
-        return db.Article.find();
+        // console.log('Total query',db.Article.find());
+        return new Promise((resolve, reject) => {
+          db.Article.find().exec((err, res) => {
+            setTimeout( () => {
+              err ? reject(err) : resolve(res);
+            }, 2000)
+          })
+        });
       },
     },
+    article: {
+      type: new GraphQLList(articleType),
+      resolve() {
+        // console.log('Total query',db.Article.find());
+        return new Promise((resolve, reject) => {
+
+          db.Article.find({_id: "59724199ff1c2278423bddb6"}).exec((err, res) => {
+            console.log('Result', res)
+            err ? reject(err) : resolve(res);
+          })
+        });
+      },
+    }
   }),
 });
 

@@ -36,4 +36,11 @@ ${Faker.lorem.paragraphs()}
   }
 });
 
+export function getUserByPosition(root, {id}) {
+    Article.find({}).exec((err, res) => {
+      return err ? err : res;
+    })
+};
+
+
 export default { Article };
