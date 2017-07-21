@@ -6,3 +6,12 @@ export const ARTICLES_QUERY = `{
     title
   }
 }`;
+
+export const ARTICLEBYID_QUERY = `{
+  articles {
+    author
+    excerpt
+    id
+    title
+  }
+}`;

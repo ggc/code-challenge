@@ -1,6 +1,10 @@
 import React, { Component } from 'react';
-import request from './request';
-import { ARTICLES_QUERY } from './queries';
+import { request } from './request';
+import { ARTICLES_QUERY, ARTICLEBYID_QUERY } from './queries';
+
+import Header from './components/Header.jsx';
+import Main from './components/Main.jsx';
+import Footer from './components/Footer.jsx';
 
 class App extends Component {
   // definition
@@ -13,17 +17,18 @@ class App extends Component {
 
   // lifecycle
   componentWillMount() {
-    request(ARTICLES_QUERY).then(response => {
-      this.setState({ articles: response.data.articles });
-    });
+    // request(ARTICLES_QUERY).then(response => {
+    //   this.setState({ articles: response.data.articles });
+    // });
   }
 
   // Renders
   render() {
     return (
       <div className="App">
-        <h2>Billin code challenge</h2>
-        <pre>{JSON.stringify(this.state.articles, null, 2)}</pre>
+        <Header />
+        <Main />
+        <Footer />
       </div>
     );
   }
