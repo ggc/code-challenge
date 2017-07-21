@@ -1,0 +1,8 @@
+/* Shared */
+@import 'colors.css';
+
+@import 'main.css';
+
+.classh2 {
+    background: blue;
+}

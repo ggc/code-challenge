@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { request } from '../request';
 import { ARTICLES_QUERY } from '../queries';
+import style from '../stylesheets/main.css';
 
 class Main extends Component {
   // definition
@@ -21,7 +22,7 @@ class Main extends Component {
   // Renders
   render() {
     return (
-      <div>{this.state.articles.map( (article,index) => 
+      <section>{this.state.articles.map( (article,index) => 
           <div key={index}>
               <h1>
                   {article.author}
@@ -31,7 +32,7 @@ class Main extends Component {
               </p>
           </div>
           )}
-      </div>
+      </section>
     );
   }
 }

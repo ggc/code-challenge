@@ -1,5 +1,6 @@
 var path = require('path');
 var webpack = require('webpack');
+var ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 module.exports = {
     entry: './src/index.js',
@@ -16,10 +17,20 @@ module.exports = {
         },
         {
             test: /\.css$/,
+            exclude: /node_modules/,
             use: [
-                'style-loader',
-                { loader: 'css-loader', options: { importLoaders: 1 } },
-                'postcss-loader'
+                {
+                    loader: 'style-loader',
+                },
+                {
+                    loader: 'css-loader',
+                    options: {
+                        importLoaders: 1,
+                    }
+                },
+                {
+                    loader: 'postcss-loader'
+                }
             ]
         }
         ]
@@ -29,6 +40,9 @@ module.exports = {
         tls: 'empty',
         net: 'empty'
     },
-    devtool: "eval"
-// inline-source-map to add sourceMaps, cheap-eval-source-map to fast
+    devtool: "eval",
+    plugins: [
+        new ExtractTextPlugin('[name].bundle.css'),
+    ],
+    // inline-source-map to add sourceMaps, cheap-eval-source-map to fast
 };
