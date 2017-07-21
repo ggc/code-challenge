@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { request } from '../request';
 import { ARTICLES_QUERY } from '../queries';
-import style from '../stylesheets/main.css';
+import style from '../stylesheets/style.css';
 
 class Main extends Component {
   // definition

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import style from '../stylesheets/style.css';
 
 class Footer extends Component {
   // definition
@@ -13,7 +14,7 @@ class Footer extends Component {
   // Renders
   render() {
     return (
-      <h2>Billin code challenges footer</h2>
+      <div id="footer">Billin code challenges footer</div>
     );
   }
 }

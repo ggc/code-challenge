@@ -1,15 +1,42 @@
 body {
-    background: aquamarine;
-}
-
-.header {
-    background: red;
+    background: rebeccapurple;
 }
 
 section {
-  lost-utility: clearfix;
+  height: 100%;
+  padding-top: 60px;
+  padding-bottom: 30px;
 }
 
-div {
-  lost-column: 1/2;
+section>div {
+    lost-waffle: 1/2;
+    /*box-shadow: 2px 10px 10px 30px #888888;*/
+    border-radius: 8px;
+    background: lightskyblue;
+    p {
+        display: block; /* or inline-block */
+        text-overflow: ellipsis;
+        word-wrap: break-word;
+        overflow: hidden;
+        max-height: 9em;
+        line-height: 1.8em;
+    }
+}
+
+#header {
+    position:fixed;
+    left:0px;
+    top: 0px;
+    height:60px;
+    width:100%;
+    background: deepskyblue;
+}
+
+#footer {
+    position:fixed;
+    left:0px;
+    bottom:0px;
+    height:30px;
+    width:100%;
+    background: #794DFF;
 }
