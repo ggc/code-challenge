@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { request } from '../request';
-import { ARTICLES_QUERY } from '../queries';
+import { articleById_QUERY } from '../queries';
 import style from '../stylesheets/style.css';
 
 class ArticleDetails extends Component {
@@ -11,20 +11,35 @@ class ArticleDetails extends Component {
 
   // lifecycle
   componentWillMount() {
-    request(ARTICLES_QUERY).then(response => {
-      this.setState({ articles: response.data.articles });
-    });
+    console.log('Sending query...: ', articleById_QUERY(this.props.id))
+    this.props.handleInit(this.props.id);
+    // request(articleById_QUERY(this.props.id))
+    // .then(response => {
+    //   console.log('Query results...: ', response)
+    //   this.setState({ article: response.data.article });
+    // })
+    // .catch(
+    //   reason => {
+    //     console.log('Promise rejected because ', reason)
+    //   }
+    // )
+  }
+
+  handleClick() {
+    this.props.onClick();
   }
 
   // Renders
   render() {
     return (
       <section>
-        <p>Oh</p>
+        <h1>{this.props.articleDetails[0].author}</h1>
+        <p>{this.props.articleDetails[0].excerpt}</p>
+        <p>{this.props.articleDetails[0].id}</p>
+        <button onClick={this.handleClick.bind(this)}>Get state</button>
       </section>
     );
   }
 }
 
-      // <pre>{JSON.stringify(this.state.articles, null, 2)}</pre>
 export default ArticleDetails;

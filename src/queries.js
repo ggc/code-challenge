@@ -7,11 +7,14 @@ export const ARTICLES_QUERY = `{
   }
 }`;
 
-export const ARTICLEBYID_QUERY = `{
-  articles {
-    author
-    excerpt
-    id
-    title
-  }
-}`;
+
+export const articleById_QUERY = id => { 
+  return `{
+    article(id: "${id}") {
+      author
+      excerpt
+      id
+      title
+    }
+  }`
+} 

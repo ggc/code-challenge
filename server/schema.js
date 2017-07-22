@@ -56,11 +56,13 @@ const Query = new GraphQLObjectType({
     },
     article: {
       type: new GraphQLList(articleType),
-      resolve() {
+      args: {
+        id: { type: GraphQLString }
+      },
+      resolve: function(_, {id}) {
         // console.log('Total query',db.Article.find());
         return new Promise((resolve, reject) => {
-
-          db.Article.find({_id: "59724199ff1c2278423bddb6"}).exec((err, res) => {
+          db.Article.find({"_id": id}).exec((err, res) => {
             console.log('Result', res)
             err ? reject(err) : resolve(res);
           })

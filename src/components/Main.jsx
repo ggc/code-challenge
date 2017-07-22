@@ -6,7 +6,7 @@ import { Switch, Route } from 'react-router-dom'
 import style from '../stylesheets/style.css';
 
 import Articles from '../containers/Articles.js';
-// import ArticleDetails from '../containers/ArticleDetails.js';
+import ArticleDetails from '../containers/ArticleDetails.js';
 
 class Main extends Component {
   // // definition
@@ -29,6 +29,7 @@ class Main extends Component {
     return (
       <Switch>
           <Route exact path="/" component={Articles} />
+          <Route path="/:articleID" component={ArticleDetails} />
       </Switch>
     );
   }

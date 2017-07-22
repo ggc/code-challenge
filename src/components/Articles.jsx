@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { request } from '../request';
 import { ARTICLES_QUERY } from '../queries';
+import { Link } from 'react-router-dom'
 
 import style from '../stylesheets/style.css';
 
@@ -24,15 +25,17 @@ class Articles extends Component {
   render() {
     return (
       <section>{this.state.articles.map( (article,index) => 
-          <div key={index}>
+        <div key={index}>
+          <Link to={`/${article.id}`}>
               <h1>
                   {article.author}
               </h1>
               <p>
                   {article.excerpt}
               </p>
-          </div>
-          )}
+          </Link>
+        </div>
+        )}
       </section>
     );
   }
