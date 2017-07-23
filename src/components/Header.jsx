@@ -24,6 +24,9 @@ class Header extends Component {
           <Link to='/'>
             <button> Back </button>
           </Link>
+          <Link to='/new'>
+            <button> New article </button>
+          </Link>
           {this.state.title}
         </div>
         

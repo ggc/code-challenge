@@ -59,7 +59,14 @@ const Query = new GraphQLObjectType({
         id: { type: GraphQLString }
       },
       resolve: function(_, {id}) {
-        // console.log('Total query',db.Article.find());
+        let art = new db.Article({
+          author: 'Rick',
+          content: 'I dont know M<burrrrp>orty',
+          excerpt: 'It seems ff<burrrrp>ake',
+          published: true,
+          tags: ['Rick','Morty'],
+          title: 'Ricks thoughts',
+        })
         return new Promise((resolve, reject) => {
           db.Article.find({"_id": id}).exec((err, res) => {
             console.log('Result', res)
@@ -72,28 +79,146 @@ const Query = new GraphQLObjectType({
 });
 
 var MutationAdd = {
-  type: new GraphQLList(articleType),
+  type: articleType,
   description: 'Add new article',
   args: {
     author: {
-      name: 'Author name',
+      name: 'author',
+      type: GraphQLString
+    },
+    excerpt: {
+      name: 'excerpt',
+      type: GraphQLString
+    },
+    content: {
+      name: 'content',
+      type: GraphQLString
+    },
+    title: {
+      name: 'title',
+      type: GraphQLString
+    },
+    published: {
+      name: 'published',
+      type: GraphQLString
+    },
+    tags: {
+      name: 'tags',
+      type: new GraphQLList(GraphQLString)
+    }
+  },
+  resolve: (root, {author, excerpt, content, title, published, tags}) => {
+    // Write on DB
+    return new Promise((resolve, reject) => {
+      let newArt = new db.Article({
+        author: author,
+        content: content,
+        excerpt: excerpt,
+        published: published,
+        tags: tags,
+        title: title
+      });
+      newArt.save( (err, written) => {
+        if(err) {
+          reject(err);
+        } else {
+          resolve(written);
+        }
+      });
+    });
+  }
+}
+
+var MutationDelete = {
+  type: articleType,
+  description: 'Delete article',
+  args: {
+    id: {
+      name: 'Article id',
       type: GraphQLString
     }
   },
-  resolve: (root, {author}) => {
+  resolve: (root, {id}) => {
     // Write on DB
-    return [{
-      author: author,
-      excerpt: 'Some random content',
-      id: (new Date()).getTime()
-    }];
+    return new Promise((resolve, reject) => {
+      db.Article.remove({"_id": id}, function (err, article) {
+        if (err) {
+          reject(err)
+        } else {
+          console.log('Deleted document', article)
+          resolve({id: id});
+          // removed!
+        }
+      });
+    });
+  }
+}
+
+var MutationUpdate = {
+  type: articleType,
+  description: 'Update article',
+  args: {
+    id: {
+      name: 'id',
+      type: GraphQLString
+    },
+    author: {
+      name: 'author',
+      type: GraphQLString
+    },
+    excerpt: {
+      name: 'excerpt',
+      type: GraphQLString
+    },
+    content: {
+      name: 'content',
+      type: GraphQLString
+    },
+    title: {
+      name: 'title',
+      type: GraphQLString
+    },
+    published: {
+      name: 'published',
+      type: GraphQLString
+    },
+    tags: {
+      name: 'tags',
+      type: new GraphQLList(GraphQLString)
+    }
+  },
+  resolve: (root, {id, author, excerpt, content, title, published, tags}) => {
+    // Write on DB
+    return new Promise((resolve, reject) => {
+      db.Article.findById(id, function (err, article) {
+        if(err) {
+          reject(err);
+        } else {
+          article.author = author,
+          article.content = content,
+          article.excerpt = excerpt,
+          article.published = published,
+          article.tags = tags,
+          article.title = title
+          article.save( (err, newArticle) => {
+            if(err) {
+              reject(err);
+            } else {
+              resolve(newArticle);
+            }
+          })
+        }
+      });
+    });
   }
 }
 
 const Mutation = new GraphQLObjectType({
   name: 'Mutation',
   fields: {
-    addArt: MutationAdd
+    addArt: MutationAdd,
+    updateArt: MutationUpdate,
+    deleteArt: MutationDelete
   }
 })
 

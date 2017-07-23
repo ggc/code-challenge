@@ -20,10 +20,9 @@ class Articles extends Component {
   render() {
     return (
       <section>{this.props.articles.map( (article,index) => {
-            console.log(`Title ${article.author}`)
             return (
               <div key={index}>
-                <Link to={`${article.id}`}>
+                <Link to={`/${article.id}`}>
                   <h1>
                       {article.author}
                   </h1>

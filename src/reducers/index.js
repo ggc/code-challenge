@@ -1,6 +1,9 @@
 import { combineReducers } from 'redux';
-import { 
-    REQUEST_ARTICLE, 
+import {
+    CREATE_ARTICLE,
+    UPDATE_ARTICLE,
+    DELETE_ARTICLE,
+    REQUEST_ARTICLE,
     RECEIVE_ARTICLE,
     REQUEST_ARTICLES, 
     RECEIVE_ARTICLES 
@@ -21,6 +24,14 @@ function article(
     action
 ) {
     switch(action.type) {
+        case CREATE_ARTICLE:
+            return Object.assign({}, state, {
+                details: [action.article]
+            })
+        case UPDATE_ARTICLE:
+            return Object.assign({}, state, {
+                details: [action.article]
+            })
         case REQUEST_ARTICLE:
             return Object.assign({}, state, {
                 fetching: true
