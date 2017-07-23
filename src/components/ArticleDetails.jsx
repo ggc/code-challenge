@@ -11,7 +11,6 @@ class ArticleDetails extends Component {
 
   // lifecycle
   componentWillMount() {
-    console.log('Sending query...: ', articleById_QUERY(this.props.id))
     this.props.handleInit(this.props.id);
     // request(articleById_QUERY(this.props.id))
     // .then(response => {
@@ -33,7 +32,9 @@ class ArticleDetails extends Component {
   render() {
     return (
       <section>
-        <h1>{this.props.articleDetails[0].author}</h1>
+        <h1>
+          <input defaultValue={this.props.articleDetails[0].author} />
+        </h1>
         <p>{this.props.articleDetails[0].excerpt}</p>
         <p>{this.props.articleDetails[0].id}</p>
         <button onClick={this.handleClick.bind(this)}>Get state</button>

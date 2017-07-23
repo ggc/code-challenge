@@ -16,16 +16,6 @@ class App extends Component {
   // definition
   constructor(props) {
     super(props);
-    this.state = {
-      articles: [],
-    };
-  }
-
-  // lifecycle
-  componentWillMount() {
-    // request(ARTICLES_QUERY).then(response => {
-    //   this.setState({ articles: response.data.articles });
-    // });
   }
 
   // Renders

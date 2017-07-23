@@ -44,12 +44,11 @@ const Query = new GraphQLObjectType({
     articles: {
       type: new GraphQLList(articleType),
       resolve() {
-        // console.log('Total query',db.Article.find());
+        console.log('Total query',db.Article.find());
         return new Promise((resolve, reject) => {
           db.Article.find().exec((err, res) => {
-            setTimeout( () => {
-              err ? reject(err) : resolve(res);
-            }, 2000)
+            console.log('Result', res)
+            err ? reject(err) : resolve(res);
           })
         });
       },
@@ -72,8 +71,35 @@ const Query = new GraphQLObjectType({
   }),
 });
 
+var MutationAdd = {
+  type: new GraphQLList(articleType),
+  description: 'Add new article',
+  args: {
+    author: {
+      name: 'Author name',
+      type: GraphQLString
+    }
+  },
+  resolve: (root, {author}) => {
+    // Write on DB
+    return [{
+      author: author,
+      excerpt: 'Some random content',
+      id: (new Date()).getTime()
+    }];
+  }
+}
+
+const Mutation = new GraphQLObjectType({
+  name: 'Mutation',
+  fields: {
+    addArt: MutationAdd
+  }
+})
+
 const Schema = new GraphQLSchema({
   query: Query,
+  mutation: Mutation
 });
 
 export default Schema;

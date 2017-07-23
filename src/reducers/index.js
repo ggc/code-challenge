@@ -1,41 +1,58 @@
 import { combineReducers } from 'redux';
-import { REQUEST_ARTICLE, RECEIVE_ARTICLE } from '../actions';
+import { 
+    REQUEST_ARTICLE, 
+    RECEIVE_ARTICLE,
+    REQUEST_ARTICLES, 
+    RECEIVE_ARTICLES 
+} from '../actions';
 import { request } from '../request';
 import { articleById_QUERY } from '../queries.js';
 
-function articles(
+// Reducer for ONE article (e.g. To show its details)
+function article(
     state = {
-        articles: [],
-        articleDetails: [{
-            author: '1',
-            excerpt: '2',
-            title: '3'
-        }]
+        details: [{
+            author: 'Loading',
+            excerpt: 'Loading',
+            title: 'Loading'
+        }],
+        fetching: false
     },
     action
 ) {
-    console.log('Reducer fired!. State: ', state);
     switch(action.type) {
         case REQUEST_ARTICLE:
-            return state;
-        case RECEIVE_ARTICLE:
-            console.log('RECEIVE_ARTICLE - ',action.article);
             return Object.assign({}, state, {
-                articleDetails: action.article.data.article
+                fetching: true
             })
-            // request(articleById_QUERY(action.articleId))
-            // .then(response => {
-            //     console.log('Query results on reducer...: ', response)
-            //     return Object.assign({}, state, {
-            //         articleDetails: response.data.article
-            //     })
-            // })
-            // .catch(
-            //     reason => {
-            //         console.log('Promise rejected because ', reason)
-            //         return state;
-            //     }
-            // )
+        case RECEIVE_ARTICLE:
+            return Object.assign({}, state, {
+                details: action.article.data.article
+            })
+        default:
+            return state;
+    }
+}
+
+
+// Reducer to handle Articles (e.g. To show its details)
+function articles(
+    state = {
+        list: [],
+        fetching: false
+    },
+    action
+) {
+    switch(action.type) {
+        case REQUEST_ARTICLES:
+            return Object.assign({}, state, {
+                fetching: true
+            })
+        case RECEIVE_ARTICLES:
+            return Object.assign({}, state, {
+                list: action.articles,
+                fetching: false
+            })
         default:
             return state;
     }
@@ -44,7 +61,8 @@ function articles(
 // combineReducers gather results in stateObject like:
 // newName: reducer => state = {newName: <reducerState>}
 const articlesManager = combineReducers({
-    articles
+    articles,
+    article
 });
 
 export default articlesManager;

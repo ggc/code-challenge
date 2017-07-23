@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 // import style from '../stylesheets/main.css';
 
 class Header extends Component {
@@ -14,10 +15,19 @@ class Header extends Component {
   componentWillMount() {
   }
 
+    // console.log("Current path: ", this.props.location.pathname);
   // Renders
   render() {
     return (
-        <div id="header">{this.state.title}</div>
+        <div id="header">
+      <div>
+          <Link to='/'>
+            <button> Back </button>
+          </Link>
+          {this.state.title}
+        </div>
+        
+      </div>
     );
   }
 }

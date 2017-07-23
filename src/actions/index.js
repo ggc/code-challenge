@@ -1,15 +1,7 @@
-// import request from 'superagent';
 import { request } from '../request';
-import { articleById_QUERY } from '../queries';
+import { articleById_QUERY, ARTICLES_QUERY } from '../queries';
 
-// export const LOAD_ARTICLE = 'LOAD_ARTICLE';
-// export const loadArticle = (articleId) => {
-//     return {
-//         type: 'LOAD_ARTICLE',
-//         articleId
-//     };
-// };
-
+// Article selected actions
 export const REQUEST_ARTICLE = 'REQUEST_ARTICLE';
 function requestArticle(articleId) {
     return {
@@ -27,21 +19,49 @@ function receiveArticle(article, articleId) {
     }
 }
 
-
-
 export function loadArticle(articleId) {
     return function (dispatch) {
         dispatch(requestArticle(articleId))
 
         request(articleById_QUERY(articleId))
         .then(response => {
-            console.log('Query results on reducer...: ', response)
             dispatch(receiveArticle(response, articleId));
         })
         .catch(
             reason => {
-                console.log('Promise rejected because ', reason)
                 dispatch(receiveArticle(response, articleId));
+            }
+        )
+    }
+}
+
+// Articles pack actions
+export const REQUEST_ARTICLES = 'REQUEST_ARTICLES';
+function requestArticles() {
+    return {
+        type: REQUEST_ARTICLES
+    }
+}
+
+export const RECEIVE_ARTICLES = 'RECEIVE_ARTICLES';
+function receiveArticles(articles) {
+    return {
+        type: RECEIVE_ARTICLES,
+        articles: articles.data.articles
+    }
+}
+
+export function loadArticles() {
+    return function (dispatch) {
+        dispatch(requestArticles())
+
+        request(ARTICLES_QUERY)
+        .then(response => {
+            console.log('Request action response: ', response);
+            dispatch(receiveArticles(response));
+        })
+        .catch(
+            reason => {
             }
         )
     }

@@ -9,32 +9,31 @@ class Articles extends Component {
   // definition
   constructor(props) {
     super(props);
-    this.state = {
-      articles: [],
-    };
   }
 
   // lifecycle
   componentWillMount() {
-    request(ARTICLES_QUERY).then(response => {
-      this.setState({ articles: response.data.articles });
-    });
+    this.props.handleInit();
   }
 
   // Renders
   render() {
     return (
-      <section>{this.state.articles.map( (article,index) => 
-        <div key={index}>
-          <Link to={`/${article.id}`}>
-              <h1>
-                  {article.author}
-              </h1>
-              <p>
-                  {article.excerpt}
-              </p>
-          </Link>
-        </div>
+      <section>{this.props.articles.map( (article,index) => {
+            console.log(`Title ${article.author}`)
+            return (
+              <div key={index}>
+                <Link to={`${article.id}`}>
+                  <h1>
+                      {article.author}
+                  </h1>
+                  <p>
+                      {article.excerpt}
+                  </p>
+                </Link>
+              </div>
+            )
+          }
         )}
       </section>
     );

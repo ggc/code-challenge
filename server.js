@@ -1,5 +1,6 @@
 var express = require('express');
 var http = require('http');
+var path = require('path');
 var app = express();
 
 app.set('port', 8080);
@@ -11,8 +12,9 @@ var sendJSONResponse = function(res, status, content){
     res.send(content);
 };
 
-app.get('/', (req, res,next) => {
-    res.render('index');
+app.use(express.static(path.join(__dirname, 'build')));
+app.get('*', function(req, res) {
+    res.sendfile('index.html');
 });
 
 var server = http.createServer(app);
