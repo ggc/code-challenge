@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
-import { request } from '../request';
-import { ARTICLES_QUERY } from '../queries';
 import { Switch, Route } from 'react-router-dom'
 
-import style from '../stylesheets/style.css';
+import { request } from './actions/request';
+import { ARTICLES_QUERY } from './actions/queries';
+import style from './style.css';
 
-import Articles from '../containers/Articles.js';
-import ArticleDetails from '../containers/ArticleDetails.js';
-import NewArticle from '../containers/NewArticle.js';
-import EditArticle from '../containers/EditArticle.js';
+import Articles from '../Articles/Articles.js';
+import ArticleDetails from '../ArticleDetails/ArticleDetails.js';
+import NewArticle from '../EditArticle/NewArticle.js';
+import EditArticle from '../EditArticle/EditArticle.js';
 
 class Main extends Component {
   // // definition

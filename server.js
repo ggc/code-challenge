@@ -12,9 +12,9 @@ var sendJSONResponse = function(res, status, content){
     res.send(content);
 };
 
-app.use(express.static(path.join(__dirname, 'build')));
+app.use(express.static('./build'));
 app.get('*', function(req, res) {
-    res.sendfile('index.html');
+    res.sendfile('./build/index.html');
 });
 
 var server = http.createServer(app);

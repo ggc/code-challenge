@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import { request } from '../request';
-import { articleById_QUERY } from '../queries';
-import style from '../stylesheets/style.css';
+import { request } from '../App/actions/request';
+import { ARTICLEBYID_QUERY } from '../App/actions/queries';
+import style from '../App/style.css';
 
 class ArticleDetails extends Component {
   // definition
@@ -27,9 +27,17 @@ class ArticleDetails extends Component {
   render() {
     return (
       <section>
-        <h1>{this.props.articleDetails[0].author}</h1>
-        <p>{this.props.articleDetails[0].excerpt}</p>
-        <p>{this.props.articleDetails[0].id}</p>
+        <h1>{this.props.articleDetails[0].title}</h1>
+        <h2>{this.props.articleDetails[0].author}</h2>
+        <p>{this.props.articleDetails[0].content}</p>
+        <p>{this.props.articleDetails[0].published}</p>
+        <p>{
+          this.props.articleDetails[0].tags.map( (tag,index) => {
+            return (
+              <span key={index}> #{tag} </span>
+            )
+          })
+        }</p>
         <Link to='/'>
           <button onClick={this.handleDelete.bind(this)}>Delete</button>
         </Link>

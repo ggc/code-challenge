@@ -1,18 +1,18 @@
-import { request } from '../request';
+import { request } from './request';
 import { 
-    articleById_QUERY,
+    ARTICLEBYID_QUERY,
     ARTICLES_QUERY,
     CREATEARTICLE_QUERY,
     UPDATEARTICLE_QUERY,
     DELETEARTICLE_QUERY
-} from '../queries';
+} from './queries';
 
 // Create article
 const CREATE_ARTICLE = 'CREATE_ARTICLE';
 export function createArticle(article) {
     request(CREATEARTICLE_QUERY(article))
     .then(response => {
-        console.log('CreateArticle action done. Response: ', response)
+        console.log('Axios res: ', response)
     })
     .catch(
         reason => {
@@ -29,14 +29,12 @@ export function createArticle(article) {
 const DELETE_ARTICLE = 'DELETE_ARTICLE';
 export function deleteArticle(articleId) {
     request(DELETEARTICLE_QUERY(articleId))
-    .then(() => {
-        console.log('Deleted', articleId)
-        // dispatch(receiveArticle(response, articleId));
+    .then((response) => {
+        console.log('Axios res: ', response)
     })
     .catch(
         reason => {
             console.log('DeleteArticle action done. Error: ', reason)
-            // dispatch(receiveArticle(response, articleId));
         }
     )
     return {
@@ -49,8 +47,8 @@ export function deleteArticle(articleId) {
 const UPDATE_ARTICLE = 'UPDATE_ARTICLE';
 export function updateArticle(article) {
     request(UPDATEARTICLE_QUERY(article))
-    .then(() => {
-        console.log('Update', article)
+    .then((response) => {
+        console.log('Axios res: ', response)
     })
     .catch(
         reason => {
@@ -85,8 +83,9 @@ export function loadArticle(articleId) {
     return function (dispatch) {
         dispatch(requestArticle(articleId))
 
-        request(articleById_QUERY(articleId))
+        request(ARTICLEBYID_QUERY(articleId))
         .then(response => {
+        console.log('Axios res: ', response)
             dispatch(receiveArticle(response, articleId));
         })
         .catch(
@@ -119,7 +118,7 @@ export function loadArticles() {
 
         request(ARTICLES_QUERY)
         .then(response => {
-            console.log('Request action response: ', response);
+        console.log('Axios res: ', response)
             dispatch(receiveArticles(response));
         })
         .catch(

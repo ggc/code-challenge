@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-// import style from '../stylesheets/main.css';
 
 class Header extends Component {
   // definition
@@ -15,7 +14,6 @@ class Header extends Component {
   componentWillMount() {
   }
 
-    // console.log("Current path: ", this.props.location.pathname);
   // Renders
   render() {
     return (

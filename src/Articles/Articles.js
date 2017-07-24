@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
-import ArticlesComp from '../components/Articles.jsx';
-import { loadArticles } from '../actions';
+import ArticlesComp from './Articles.jsx';
+import { loadArticles } from '../App/actions';
 
 const mapStateToProps = (state, ownProps) => {
     return {

@@ -1,15 +1,15 @@
 import React, { Component } from 'react';
-import { request } from './request';
 import { Provider } from 'react-redux';
 
-import { ARTICLES_QUERY, ARTICLEBYID_QUERY } from './queries';
+import { request } from './actions/request';
+import { ARTICLES_QUERY, ARTICLEBYID_QUERY } from './actions/queries';
 
 import store from './store';
-import Header from './components/Header.jsx';
-import Main from './components/Main.jsx';
-import Footer from './components/Footer.jsx';
+import Header from './Header.jsx';
+import Main from './Main.jsx';
+import Footer from './Footer.jsx';
 
-import styles from './stylesheets/style.css';
+import styles from './style.css';
 
 
 class App extends Component {

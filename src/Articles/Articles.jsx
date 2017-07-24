@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
-import { request } from '../request';
-import { ARTICLES_QUERY } from '../queries';
 import { Link } from 'react-router-dom'
 
-import style from '../stylesheets/style.css';
+import { ARTICLES_QUERY } from '../App/actions/queries';
+import { request } from '../App/actions/request';
+
+import style from '../App/style.css';
 
 class Articles extends Component {
   // definition

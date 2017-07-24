@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
-import EditArticleComp from '../components/EditArticle.jsx';
-import { updateArticle } from '../actions';
+import EditArticleComp from './EditArticle.jsx';
+import { updateArticle } from '../App/actions';
 
 const mapStateToProps = (state, ownProps) => {
     console.log('EditArticle mapStateToProps',state)
@@ -11,14 +11,13 @@ const mapStateToProps = (state, ownProps) => {
         }
     } 
 };
-// handleInit: (articleId) => {
-//             dispatch(loadArticle(articleId))
-//         },
+
 const mapDispatchToProps = (dispatch, ownProps) => {
     return {
         
         onSubmit: (article) => {
-            console.log('A title was submitted: ' + article);
+            article.tags = article.tags.split(',').map( tag => '"'+tag.trim()+'"' )
+            console.log('State submitted: ', article);
             dispatch(updateArticle(article));
         }
     }
