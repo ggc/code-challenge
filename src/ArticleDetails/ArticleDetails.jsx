@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { request } from '../App/actions/request';
 import { ARTICLEBYID_QUERY } from '../App/actions/queries';
-import style from '../App/style.css';
 
 class ArticleDetails extends Component {
   // definition
@@ -17,10 +16,6 @@ class ArticleDetails extends Component {
 
   handleDelete() {
     this.props.onDelete(this.props.articleDetails[0].id);
-  }
-  
-  handleClick() {
-    console.log('Link will be to', this.props.articleDetails)
   }
 
   // Renders
@@ -38,13 +33,18 @@ class ArticleDetails extends Component {
             )
           })
         }</p>
+
         <Link to='/'>
-          <button onClick={this.handleDelete.bind(this)}>Delete</button>
+          <button onClick={this.handleDelete.bind(this)}>
+            Delete
+          </button>
         </Link>
+
         <Link to={`${this.props.articleDetails[0].id}/1`}>
-          <button>Modify</button>
+          <button>
+            Modify
+          </button>
         </Link>
-        <button onClick={this.handleClick.bind(this)}>Get state</button>
       </section>
     );
   }

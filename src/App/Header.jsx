@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 
+// import styles from './main.css';
+
 class Header extends Component {
   // definition
   constructor(props) {
@@ -10,24 +12,17 @@ class Header extends Component {
     };
   }
 
-  // lifecycle
-  componentWillMount() {
-  }
-
   // Renders
   render() {
     return (
-        <div id="header">
-      <div>
-          <Link to='/'>
-            <button> Back </button>
-          </Link>
-          <Link to='/new'>
-            <button> New article </button>
-          </Link>
-          {this.state.title}
-        </div>
-        
+      <div id="header">
+        <Link to='/new'>
+          <button> New article </button>
+        </Link>
+        <Link to='/'>
+          <button> Back </button>
+        </Link>
+        <p> Billin Code Challenge </p>
       </div>
     );
   }

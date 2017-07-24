@@ -1,26 +1,5 @@
 body {
-    background: rebeccapurple;
-}
-
-section {
-  height: 100%;
-  padding-top: 60px;
-  padding-bottom: 30px;
-}
-
-section>div {
-    lost-waffle: 1/2;
-    /*box-shadow: 2px 10px 10px 30px #888888;*/
-    border-radius: 8px;
-    background: lightskyblue;
-    p {
-        display: block; /* or inline-block */
-        text-overflow: ellipsis;
-        word-wrap: break-word;
-        overflow: hidden;
-        max-height: 9em;
-        line-height: 1.8em;
-    }
+    background: #3C2883;
 }
 
 #header {

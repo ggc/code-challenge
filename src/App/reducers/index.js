@@ -8,8 +8,6 @@ import {
     REQUEST_ARTICLES, 
     RECEIVE_ARTICLES 
 } from '../actions';
-import { request } from '../actions/request';
-import { ARTICLEBYID_QUERY } from '../actions/queries.js';
 
 // Reducer for ONE article (e.g. To show its details)
 function article(

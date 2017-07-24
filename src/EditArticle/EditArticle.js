@@ -5,10 +5,7 @@ import { updateArticle } from '../App/actions';
 const mapStateToProps = (state, ownProps) => {
     console.log('EditArticle mapStateToProps',state)
     return {
-        articleDetails: state.article.details,
-        onClick: () => {
-            console.log('Click! Status: ', state)
-        }
+        articleDetails: state.article.details
     } 
 };
 
@@ -17,7 +14,6 @@ const mapDispatchToProps = (dispatch, ownProps) => {
         
         onSubmit: (article) => {
             article.tags = article.tags.split(',').map( tag => '"'+tag.trim()+'"' )
-            console.log('State submitted: ', article);
             dispatch(updateArticle(article));
         }
     }

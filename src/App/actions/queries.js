@@ -56,27 +56,6 @@ export const DELETEARTICLE_QUERY = articleId => {
 
 
 export const UPDATEARTICLE_QUERY = article => {
-  console.log(`tags: [${article.tags}]`);
-  // let tagsArray = article.tags.split(',').map( tag => '"'+tag.trim()+'"' );
-  // console.log(`tags: [${tagsArray}]`);
-    console.log(`mutation { 
-        updateArt (
-          id: "${article.id}",
-          author: "${article.author}",
-          excerpt: "${article.content}",
-          published: ${article.published},
-          title: "${article.title}",
-          tags: [${article.tags}]
-      ) { 
-        id,
-        author,
-        title,
-        content,
-        excerpt,
-        published,
-        tags
-        } 
-      }`)
   return `mutation { 
       updateArt (
         id: "${article.id}",

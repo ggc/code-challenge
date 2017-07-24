@@ -1,0 +1,24 @@
+section {
+    height: 100%;
+    padding-top: 60px;
+    padding-bottom: 30px;
+}
+
+section>div {
+    lost-waffle: 1/2;
+    border-radius: 8px;
+    background: #433183;
+    p {
+        display: block;
+        text-overflow: ellipsis;
+        word-wrap: break-word;
+        overflow: hidden;
+        max-height: 9em;
+        min-height: 9em;
+        line-height: 1.8em;
+    }
+    a {
+        color: #55E6C2;
+        text-decoration: none;
+    }
+}

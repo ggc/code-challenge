@@ -11,10 +11,7 @@ const mapStateToProps = (state, ownProps) => {
             excerpt: '',
             tags: '',
             published: false
-        }],
-        onClick: () => {
-            console.log('Click! Status: ', state)
-        }
+        }]
     } 
 };
 
@@ -22,11 +19,9 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     return {
         handleInit: () => {
             console.log('NewArticle handleInit')
-            // dispatch(loadArticle(articleId))
         },
         onSubmit: (article) => {
             article.tags = article.tags.split(',').map( tag => '"'+tag.trim()+'"' )
-            console.log('A title was submitted: ' + article.title);
             dispatch(createArticle(article));
         }
     }

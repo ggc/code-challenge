@@ -40,15 +40,13 @@ const articleType = new GraphQLObjectType({
 
 const Query = new GraphQLObjectType({
   name: 'Query',
-  description: 'This is a root query',
+  description: 'Root query',
   fields: () => ({
     articles: {
       type: new GraphQLList(articleType),
       resolve() {
-        console.log('Total query',db.Article.find());
         return new Promise((resolve, reject) => {
           db.Article.find({published: true}).sort({"_id": -1}).exec((err, res) => {
-            console.log('Result', res)
             err ? reject(err) : resolve(res);
           })
         });
@@ -62,7 +60,6 @@ const Query = new GraphQLObjectType({
       resolve: function(_, {id}) {
         return new Promise((resolve, reject) => {
           db.Article.find({"_id": id}).exec((err, res) => {
-            console.log('Result', res)
             err ? reject(err) : resolve(res);
           })
         });
@@ -104,12 +101,12 @@ var MutationAdd = {
     // Write on DB
     return new Promise((resolve, reject) => {
       let newArt = new db.Article({
-        author: author,
-        content: content,
-        excerpt: excerpt,
-        published: published,
-        tags: tags,
-        title: title
+        author,
+        content,
+        excerpt,
+        published,
+        tags,
+        title
       });
       newArt.save( (err, written) => {
         if(err) {
@@ -155,7 +152,7 @@ var MutationUpdate = {
       type: new GraphQLList(GraphQLString)
     }
   },
-  resolve: (root, {id, author='EMPTY', excerpt, content, title, published, tags}) => {
+  resolve: (root, {id, author, excerpt, content, title, published, tags}) => {
     // Write on DB
     return new Promise((resolve, reject) => {
       db.Article.findById(id, function (err, article) {
@@ -197,9 +194,7 @@ var MutationDelete = {
         if (err) {
           reject(err)
         } else {
-          console.log('Deleted document', article)
           resolve({id: id});
-          // removed!
         }
       });
     });

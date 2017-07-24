@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 import { ARTICLES_QUERY } from '../App/actions/queries';
 import { request } from '../App/actions/request';
 
-import style from '../App/style.css';
+import style from './Articles.css';
 
 class Articles extends Component {
   // definition

@@ -16,7 +16,8 @@ export function createArticle(article) {
     })
     .catch(
         reason => {
-            console.log('CreateArticle action done. Error: ', reason)
+            // Handle exception or dispatch ERROR
+            console.log('Error ', reason)
         }
     )
     return {
@@ -34,7 +35,8 @@ export function deleteArticle(articleId) {
     })
     .catch(
         reason => {
-            console.log('DeleteArticle action done. Error: ', reason)
+            // Handle exception or dispatch ERROR
+            console.log('Error ', reason)
         }
     )
     return {
@@ -52,7 +54,8 @@ export function updateArticle(article) {
     })
     .catch(
         reason => {
-            console.log('UpdateArticle action done. Error: ', reason)
+            // Handle exception or dispatch ERROR
+            console.log('Error ', reason)
         }
     )
     return {
@@ -69,7 +72,6 @@ function requestArticle(articleId) {
         articleId
     }
 }
-
 export const RECEIVE_ARTICLE = 'RECEIVE_ARTICLE';
 function receiveArticle(article, articleId) {
     return {
@@ -78,19 +80,18 @@ function receiveArticle(article, articleId) {
         article
     }
 }
-
 export function loadArticle(articleId) {
     return function (dispatch) {
         dispatch(requestArticle(articleId))
 
         request(ARTICLEBYID_QUERY(articleId))
         .then(response => {
-        console.log('Axios res: ', response)
             dispatch(receiveArticle(response, articleId));
         })
         .catch(
             reason => {
-                dispatch(receiveArticle(response, articleId));
+                // Handle exception or dispatch ERROR
+                console.log('Error ', reason)
             }
         )
     }
@@ -103,7 +104,6 @@ function requestArticles() {
         type: REQUEST_ARTICLES
     }
 }
-
 export const RECEIVE_ARTICLES = 'RECEIVE_ARTICLES';
 function receiveArticles(articles) {
     return {
@@ -111,18 +111,18 @@ function receiveArticles(articles) {
         articles: articles.data.articles
     }
 }
-
 export function loadArticles() {
     return function (dispatch) {
         dispatch(requestArticles())
 
         request(ARTICLES_QUERY)
         .then(response => {
-        console.log('Axios res: ', response)
             dispatch(receiveArticles(response));
         })
         .catch(
             reason => {
+                // Handle exception or dispatch ERROR
+                console.log('Error ', reason)
             }
         )
     }

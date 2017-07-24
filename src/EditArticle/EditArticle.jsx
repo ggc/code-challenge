@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { request } from '../App/actions/request';
 import { ARTICLEBYID_QUERY } from '../App/actions/queries';
-import style from '../App/style.css';
+// import style from '../App/style.css';
 
 class EditArticle extends Component {
   // definition
@@ -10,7 +10,6 @@ class EditArticle extends Component {
     this.state = {};
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
-    this.handleClick = this.handleClick.bind(this);
   }
 
   // lifecycle
@@ -24,10 +23,6 @@ class EditArticle extends Component {
       published: this.props.articleDetails[0].published,
       tags: this.props.articleDetails[0].tags.toString()
     })
-  }
-
-  handleClick() {
-    console.log('Comp state: ', this.state);
   }
 
   handleChange(event) {
@@ -44,13 +39,6 @@ class EditArticle extends Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    // this.setState((prevState, props) => {
-    //   return {
-    //     tags: prevState.tags.split(',').map( tag => '"'+tag.trim()+'"' )
-    //   }
-    // });
-    
-    console.log('State submitted: ', this.state);
     this.props.onSubmit(this.state);
   }
 
@@ -59,16 +47,17 @@ class EditArticle extends Component {
     // author, content, published, tags and title
     return (
       <section>
-        <button onClick={this.handleClick}> Get state </button>
         <form onSubmit={this.handleSubmit}>
           <label>
             Title:
             <input type="text" name="title" value={this.state.title} onChange={this.handleChange} />
           </label>
+
           <label>
             Author:
             <input type="text" name="author" value={this.state.author} onChange={this.handleChange} />
           </label>
+          
           <label>
             Content:
             <textarea name="content" value={this.state.content} onChange={this.handleChange} />

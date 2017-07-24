@@ -16,7 +16,6 @@ const mapDispatchToProps = (dispatch, ownProps) => {
         },
         onDelete: (articleId) => {
             dispatch(deleteArticle(articleId))
-            console.log('Click! Status: ', articleId)
         }
     }
 };
