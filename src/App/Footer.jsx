@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-// import style from './style.css';
+
+import style from './main.css';
 
 class Footer extends Component {
   // definition
@@ -10,7 +11,7 @@ class Footer extends Component {
   // Renders
   render() {
     return (
-      <div id="footer">Billin code challenges footer</div>
+      <div id="footer" className={style.footer}>Billin code challenges footer</div>
     );
   }
 }

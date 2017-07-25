@@ -6,7 +6,7 @@ import Header from './Header.jsx';
 import Main from './Main.jsx';
 import Footer from './Footer.jsx';
 
-import styles from './main.css';
+import style from './main.css';
 
 
 class App extends Component {
@@ -19,7 +19,7 @@ class App extends Component {
   render() {
     return (
       <Provider store={store}>
-        <div className="App">
+        <div className={style.app}>
           <Header />
           <Main />
           <Footer />

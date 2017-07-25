@@ -1,10 +1,13 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom'
 
-import { ARTICLES_QUERY } from '../App/actions/queries';
-import { request } from '../App/actions/request';
-
 import style from './Articles.css';
+
+console.log('Style: ', style)
+const divStyle = {
+  color: 'red', 
+  background: 'cyan'
+}
 
 class Articles extends Component {
   // definition
@@ -19,10 +22,11 @@ class Articles extends Component {
 
   // Renders
   render() {
+    console.log('Style: ', style.class1)
     return (
-      <section>{this.props.articles.map( (article,index) => {
+      <section className={style.section}>{this.props.articles.map( (article,index) => {
             return (
-              <div key={index}>
+              <div key={index} className={style.card}>
                 <Link to={`/${article.id}`}>
                   <h1>
                       {article.author}

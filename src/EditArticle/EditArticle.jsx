@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { request } from '../App/actions/request';
 import { ARTICLEBYID_QUERY } from '../App/actions/queries';
-// import style from '../App/style.css';
+
+import style from './EditArticle.css';
 
 class EditArticle extends Component {
   // definition
@@ -47,36 +48,48 @@ class EditArticle extends Component {
     // author, content, published, tags and title
     return (
       <section>
-        <form onSubmit={this.handleSubmit}>
-          <label>
-            Title:
-            <input type="text" name="title" value={this.state.title} onChange={this.handleChange} />
-          </label>
+        <form onSubmit={this.handleSubmit} className={style.form}>
+          <div>
+            <label>
+              Title:
+              <input type="text" name="title" value={this.state.title} onChange={this.handleChange} />
+            </label>
+          </div>
 
-          <label>
-            Author:
-            <input type="text" name="author" value={this.state.author} onChange={this.handleChange} />
-          </label>
-          
-          <label>
-            Content:
-            <textarea name="content" value={this.state.content} onChange={this.handleChange} />
-          </label>
+          <div>
+            <label>
+              Author:
+              <input type="text" name="author" value={this.state.author} onChange={this.handleChange} />
+            </label>
+          </div>
 
-          <label>
-            Published:
-            <select name="published" value={this.state.published} onChange={this.handleChange}>
-              <option value={true}>Published</option>
-              <option value={false}>Private</option>
-            </select>
-          </label>
+          <div>
+            <label>
+              Content:
+              <textarea name="content" value={this.state.content} onChange={this.handleChange} />
+            </label>
+          </div>
 
-          <label>
-            Tags:
-            <input type="text" name="tags" value={this.state.tags} onChange={this.handleChange} />
-          </label>
-          
-          <input type="submit" />
+          <div>
+            <label>
+              Published:
+              <select name="published" value={this.state.published} onChange={this.handleChange}>
+                <option value={true}>Published</option>
+                <option value={false}>Private</option>
+              </select>
+            </label>
+          </div>
+
+          <div>
+            <label>
+              Tags:
+              <input type="text" name="tags" value={this.state.tags} onChange={this.handleChange} />
+            </label>
+          </div>
+
+          <div>
+            <input type="submit" />
+          </div>
         </form>
       </section>
     );

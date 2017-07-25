@@ -14,6 +14,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
         
         onSubmit: (article) => {
             article.tags = article.tags.split(',').map( tag => '"'+tag.trim()+'"' )
+            article.content = article.content.replace(/[\n\r]+/g, '');
             dispatch(updateArticle(article));
         }
     }

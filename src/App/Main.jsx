@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import { Switch, Route } from 'react-router-dom'
 
-// import style from './style.css';
-
 import Articles from '../Articles/Articles.js';
 import ArticleDetails from '../ArticleDetails/ArticleDetails.js';
 import NewArticle from '../EditArticle/NewArticle.js';

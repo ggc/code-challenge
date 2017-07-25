@@ -1,8 +1,9 @@
-body {
+:global(body) {
     background: #3C2883;
 }
 
-#header {
+.header {
+    lost-align: center;
     position:fixed;
     left:0px;
     top: 0px;
@@ -11,7 +12,7 @@ body {
     background: deepskyblue;
 }
 
-#footer {
+.footer {
     position:fixed;
     left:0px;
     bottom:0px;

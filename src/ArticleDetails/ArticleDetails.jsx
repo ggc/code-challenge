@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import { request } from '../App/actions/request';
-import { ARTICLEBYID_QUERY } from '../App/actions/queries';
+
+import style from './ArticleDetails.css';
 
 class ArticleDetails extends Component {
   // definition
@@ -21,7 +21,7 @@ class ArticleDetails extends Component {
   // Renders
   render() {
     return (
-      <section>
+      <section className={style.card}>
         <h1>{this.props.articleDetails[0].title}</h1>
         <h2>{this.props.articleDetails[0].author}</h2>
         <p>{this.props.articleDetails[0].content}</p>
@@ -29,7 +29,7 @@ class ArticleDetails extends Component {
         <p>{
           this.props.articleDetails[0].tags.map( (tag,index) => {
             return (
-              <span key={index}> #{tag} </span>
+              <span key={index} className={style.tag}> #{tag} </span>
             )
           })
         }</p>

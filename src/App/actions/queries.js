@@ -25,12 +25,14 @@ export const CREATEARTICLE_QUERY = article => {
   return `
     mutation { 
       addArt (
-        author: "${article.author}",
-        content: "${article.content}",
-        excerpt: "${article.content}",
-        published: ${article.published},
-        tags: [${article.tags}],
-        title: "${article.title}"
+        article: {
+          author: "${article.author}",
+          content: "${article.content}",
+          excerpt: "${article.content}",
+          published: ${article.published},
+          tags: [${article.tags}],
+          title: "${article.title}"
+        }
       ) {
         id,
         author,
@@ -58,13 +60,15 @@ export const DELETEARTICLE_QUERY = articleId => {
 export const UPDATEARTICLE_QUERY = article => {
   return `mutation { 
       updateArt (
-        id: "${article.id}",
-        author: "${article.author}",
-        content: "${article.content}",
-        excerpt: "${article.content}",
-        published: ${article.published},
-        title: "${article.title}",
-        tags: [${article.tags}]
+        article: {
+          id: "${article.id}",
+          author: "${article.author}",
+          content: "${article.content}",
+          excerpt: "${article.content}",
+          published: ${article.published},
+          title: "${article.title}",
+          tags: [${article.tags}]
+        }
     ) { 
       id,
       author,

@@ -1,0 +1,19 @@
+
+.card {
+    border-radius: 8px;
+    background: #433183;
+    margin: 0px 15px 40px 15px;
+    p {
+        display: block;
+        text-overflow: ellipsis;
+        word-wrap: break-word;
+        overflow: hidden;
+        line-height: 1.8em;
+    }
+} 
+
+.tag {
+    background: #FEA535;
+    border-radius: 20px;
+    padding: 2px;
+}
