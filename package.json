@@ -38,8 +38,7 @@
     "webpack-dev-server": "^2.5.1"
   },
   "scripts": {
-    "start": "node_modules/.bin/webpack-dev-server --progress --colors",
-    "dev": "node_modules/.bin/webpack && node server.js",
+    "start": "node_modules/.bin/webpack && node server.js",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom"
   }
